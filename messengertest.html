@@ -1,50 +1,74 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Admin</title>
-        <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css" />
-        <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css" />
-        <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
-        <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
-        <link rel="stylesheet" href="assets/css/style.css" />
-        <link rel="shortcut icon" href="assets/images/favicon.png" />
-        </head>
-    <body>
-        <div class="fb-customerchat"  attribution="setup_tool" page_id="115384261536607" theme_color="#0084ff">
-        </div>
-        <button onclick="showMessengerChat()">Chat with Admin</button>
-        <script>
-            function showMessengerChat() {
-              FB.CustomerChat.showDialog();
-            }
-        </script>
-        
+<html>
 
-        <script>
-            window.fbAsyncInit = function() {
-                FB.init({
-                    appId      : 'EAAPXKq2GAkEBAOiVLWZB5MZCU8Hd8JTaWc1NwIXXqZAqODEznf2lvXM3EfjLNPVyvFRM7wyoZC5b5gABFfatUdZC0p7hDcPlE7KLdCnzqQnLmMK5z5ZAYLv2CL5qrO7BSMRiRNIo8tWqadZA4Mi0tQZCDzjWRordVoWfdNcREOK13cW70ZAWaWWxj',
-                    autoLogAppEvents : true,
-                    cookie     : true,
-                    xfbml      : true,
-                    version    : 'v13.0'
+<head>
+    <meta charset="utf-8">
+    <title>My Website</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+
+        header h1 {
+            margin: 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Chat nao ae</h1>
+    </header>
+
+    <main>
+        <div class="contact-box-form">
+            <button id="chat-btn">
+            <i class="fab fa-facebook-messenger"></i>
+            Chat on Messenger
+        </button>
+        </div>
+        
+    </main>
+
+    <footer>
+        <p>&copy; by Duc Anh</p>
+    </footer>
+
+    <script>
+        const chatBtn = document.getElementById('chat-btn');
+
+        chatBtn.addEventListener('click', () => {
+            fetch('http://localhost:8080/api/v1/messenger-chat')
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = response.url;
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
                 });
-            };
-            
-            (function(d, s, id){
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {return;}
-                js = d.createElement(s); js.id = id;
-                js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-    </body>
+        });
+    </script>
+</body>
+
 </html>
